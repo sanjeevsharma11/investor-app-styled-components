@@ -1,12 +1,12 @@
 import FeedCardExpertStats from 'components/Cards/Expert/FeedCardExpertStats';
+import FeedDetailCard from 'components/Cards/Investor/FeedDetailCard/FeedDetailCard';
 import React from 'react';
 import styled from 'styled-components';
 
 /*----------------STYLES-------------------------------- */
-const FeedCardExpertWrapper = styled.div`
+const FeedCardWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
   padding: 1rem;
   border-radius: 0.5rem;
 `;
@@ -15,9 +15,12 @@ const FeedCardExpertWrapper = styled.div`
 
 const FeedDetailPage = () => {
   return (
-    <FeedCardExpertWrapper>
-      <FeedCardExpertStats />
-    </FeedCardExpertWrapper>
+    <>
+      <FeedCardWrapper>
+        <FeedCardExpertStats />
+        <FeedDetailCard />
+      </FeedCardWrapper>
+    </>
   );
 };
 

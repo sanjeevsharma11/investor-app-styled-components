@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BiRupee } from 'react-icons/bi';
 import {
   AccuracyContainer,
   ExpertAccuracyHeading,
@@ -63,7 +62,7 @@ const FeedCardExpertStats = () => {
         <ExpertDetailColumn>
           <ExpertDetailsHeading>Returns</ExpertDetailsHeading>
           <ExpertDetailsValue gain={expertStats.expertReturn}>
-            {expertStats.expertReturn}%
+            {expertStats.expertReturn}
           </ExpertDetailsValue>
         </ExpertDetailColumn>
 
@@ -75,9 +74,9 @@ const FeedCardExpertStats = () => {
         </ExpertDetailColumn>
 
         <ExpertDetailColumn>
-          <ExpertDetailsHeading>Returns</ExpertDetailsHeading>
+          <ExpertDetailsHeading>Profit</ExpertDetailsHeading>
           <ExpertDetailsValue gain={expertStats.profit}>
-            <BiRupee /> {expertStats.profit}
+            {expertStats.profit}
           </ExpertDetailsValue>
         </ExpertDetailColumn>
       </ExpertDetailContainer>

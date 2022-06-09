@@ -5,7 +5,13 @@ export const ExpertCard = styled.section`
   border-radius: 4px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 920px) {
+    border-bottom: 2px dashed #e6e6e6;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+  }
 `;
 
 export const ExpertCardHeader = styled.header`
@@ -13,7 +19,6 @@ export const ExpertCardHeader = styled.header`
   grid-template-columns: repeat(4, 1fr);
   justify-items: space-between;
   grid-gap: 10px;
-  margin-bottom: 10px;
 `;
 
 export const HeaderLeft = styled.div`
@@ -109,6 +114,7 @@ export const ExpertDetailContainer = styled.div(
         opacity: 1;
         height: auto;
         padding: 20px;
+        padding-bottom: 0;
     `,
   ]
 );
@@ -119,6 +125,22 @@ export const ExpertDetailColumn = styled.div`
   gap: 0.2rem;
   justify-content: center;
   align-items: center;
+
+  &:nth-child(1) {
+    p {
+      &:after {
+        content: '%';
+        margin-right: 0.2rem;
+      }
+    }
+  }
+  &:nth-child(3) {
+    p {
+      &:before {
+    content: '₹';
+    margin-right: 0.2rem;
+  }
+}  
 `;
 
 export const ExpertDetailsHeading = styled.h4`

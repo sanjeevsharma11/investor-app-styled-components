@@ -8,6 +8,8 @@ export const SidebarContainer = styled.div`
   padding: 0 2rem;
   width: 100%;
   height: 100vh;
+  position: sticky;
+  top: 0;
 
   @media (max-width: 920px) {
     display: none;
