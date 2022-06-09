@@ -78,7 +78,7 @@ export const ShowAdvanced = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
 
   svg {
     cursor: pointer;
@@ -123,7 +123,7 @@ export const ShowBasic = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
 
   svg {
     cursor: pointer;

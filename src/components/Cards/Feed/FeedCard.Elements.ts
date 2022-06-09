@@ -80,7 +80,7 @@ export const InstrumentTransactionType = styled.div(
 
 export const InstrumentName = styled.h1`
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: #000000;
 `;
 
@@ -95,8 +95,10 @@ export const InstrumentReturn = styled.span(
 
 export const BullishOrBerrish = styled.div`
   font-size: 10px;
-  background: #e5f0ff;
-  color: #5589ff;
+  background: ${({ bullish }: { bullish: string }) =>
+    bullish === 'bullish' ? '#e5f0ff' : 'hsla(14, 100%, 93%, 1)'};
+  color: ${({ bullish }: { bullish: string }) =>
+    bullish === 'bullish' ? 'hsla(222, 100%, 67%, 1)' : '#FF4848'};
   font-weight: 400;
   text-transform: capitalize;
   padding: 0.3rem 0.6rem;

@@ -4,7 +4,7 @@ import {
   Row,
   Title,
   Value,
-  FlexContainer,
+  ScreenShotContainer,
 } from './ReasonWithScreenshot.Elements';
 
 const feed = {
@@ -24,9 +24,11 @@ const ReasonWithScreenshot = () => {
       </Row>
       <Value>{feed.reason}</Value>
 
-      <FlexContainer>
+      <ScreenShotContainer
+        screenshot={feed.screenshot}
+      >
         <img src={feed.screenshot} alt='screenshot' />
-      </FlexContainer>
+      </ScreenShotContainer>
     </>
   );
 };

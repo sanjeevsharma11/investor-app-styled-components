@@ -30,7 +30,7 @@ const expertStats = {
 };
 
 const FeedCardExpertStats = () => {
-  const [showExpertDetails, setShowExpertDetails] = useState(false);
+  const [showExpertDetails, setShowExpertDetails] = useState(true);
 
   return (
     <ExpertCard>

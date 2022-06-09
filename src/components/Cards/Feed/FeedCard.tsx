@@ -73,7 +73,9 @@ const FeedCard = ({ feed }: { feed: IFeed }) => {
           <ExpertName>{feed.name}</ExpertName>
         </ExpertInfoWrapper>
 
-        <BullishOrBerrish>{feed.bullishOrBearish}</BullishOrBerrish>
+        <BullishOrBerrish bullish={feed.bullishOrBearish}>
+          {feed.bullishOrBearish}
+        </BullishOrBerrish>
       </Row>
       {/* intrumnent info */}
       <Row>
