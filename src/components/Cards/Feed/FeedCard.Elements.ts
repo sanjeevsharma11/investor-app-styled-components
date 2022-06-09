@@ -111,6 +111,8 @@ export const Reason = styled.p`
   color: #000000;
   margin-top: 0.5rem;
   line-height: 15px;
+  text-align: center;
+  width: 100%;
 `;
 
 export const FeedStatsWrapper = styled(Row)`

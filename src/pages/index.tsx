@@ -3,14 +3,13 @@ import styled from 'styled-components';
 
 const HomeContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
   max-width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  padding: 3rem 1.5rem;
+  padding: 1rem 2rem;
 `;
 
 const feeds = [

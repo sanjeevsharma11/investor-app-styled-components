@@ -98,7 +98,6 @@ export const MainLayoutContainer = styled.main`
   @media screen and (min-width: 920px) {
     display: grid;
     grid-template-columns: 30rem 1fr;
-    gap: 1rem;
   }
 `;
 

@@ -157,21 +157,31 @@ const FeedCard = ({ feed }: { feed: IFeed }) => {
 
       {/* reason */}
       <Row>
-        <Reason>{feed.reason}</Reason>
+        <Reason>
+          {feed.reason
+            ? feed.reason
+            : `
+            No reason provided.
+          `}
+        </Reason>
       </Row>
 
       {/* reaction and share info */}
       <Row>
-        <ReactionWrapper>
-          <ReactionList>
-            {feed.reactions.map((reaction) => (
-              <ReactionIcon key={reaction._id}>
-                {reaction.reaction}
-              </ReactionIcon>
-            ))}
-          </ReactionList>
-          <ReactionCount>{feed.reactions.length} Likes</ReactionCount>
-        </ReactionWrapper>
+        {feed.reactions?.length > 0 ? (
+          <ReactionWrapper>
+            <ReactionList>
+              {feed.reactions.map((reaction) => (
+                <ReactionIcon key={reaction._id}>
+                  {reaction.reaction}
+                </ReactionIcon>
+              ))}
+            </ReactionList>
+            <ReactionCount>{feed.reactions.length} Likes</ReactionCount>
+          </ReactionWrapper>
+        ) : (
+          <div></div>
+        )}
         <PostedOn> Posted {dayjs(feed.createdAt).fromNow()}</PostedOn>
       </Row>
 
@@ -186,7 +196,7 @@ const FeedCard = ({ feed }: { feed: IFeed }) => {
             <span>Unlock Now</span>
           </UnlockNowButton>
         ) : (
-          <InvestNowButton>Invest Now</InvestNowButton>
+          <InvestNowButton>Know More</InvestNowButton>
         )}
       </Row>
     </FeedCardContainer>
