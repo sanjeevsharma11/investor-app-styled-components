@@ -1,3 +1,4 @@
+import MainLayoutHeader from 'components/Headers/MainLayoutHeader/MainLayoutHeader';
 import Sidebar from 'components/Sidebar/Sidebar';
 import {
   GlobalStylesMainLayout,
@@ -10,6 +11,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       <GlobalStylesMainLayout />
       <MainLayoutContainer>
+        <MainLayoutHeader />
         <Sidebar />
         <section>{children}</section>
         {/* <RightSideBar>
