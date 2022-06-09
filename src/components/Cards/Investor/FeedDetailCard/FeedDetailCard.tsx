@@ -1,10 +1,18 @@
 import React from 'react';
-import ChooseYourBroker from './ChooseYourBroker/ChooseYourBroker';
+import dynamic from 'next/dynamic';
 import { FeedDetailCardWrapper } from './FeedDetailCard.Elements';
 import FeedDetailOverview from './FeedDetailOverview/FeedDetailOverview';
 import PortfolioStrategyWithInstrumentSymbol from './PortfolioStrategyWithInstrumentSymbol/PortfolioStrategyWithInstrumentSymbol';
+import ReactionAndInvestment from './ReactionAndInvestment/ReactionAndInvestment';
 import ReasonWithScreenshot from './ReasonWithScreenshot/ReasonWithScreenshot';
 import StatusWithFeedPerformance from './StatusWithFeedPerformance/StatusWithFeedPerformance';
+
+const ChooseYourBrokerNoSSR = dynamic(
+  () => import('./ChooseYourBroker/ChooseYourBroker'),
+  {
+    ssr: false,
+  }
+);
 
 const FeedDetailCard = () => {
   return (
@@ -13,7 +21,8 @@ const FeedDetailCard = () => {
       <PortfolioStrategyWithInstrumentSymbol />
       <FeedDetailOverview />
       <ReasonWithScreenshot />
-      <ChooseYourBroker />
+      <ChooseYourBrokerNoSSR />
+      <ReactionAndInvestment />
     </FeedDetailCardWrapper>
   );
 };
