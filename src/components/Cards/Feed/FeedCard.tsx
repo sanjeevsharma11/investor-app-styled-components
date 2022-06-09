@@ -34,34 +34,9 @@ import {
 import MinInvestIcon from 'assests/images/feedcard/min_investment.svg';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { IFeed } from 'store/types/feed.types';
 
 dayjs.extend(relativeTime);
-export interface IFeed {
-  _id: string;
-  avatar: string;
-  name: string;
-  rating: number;
-  isCertified: boolean;
-  premiumTradeType: string;
-  transactionType: string;
-  instrumentName: string;
-  instrumentReturn: number;
-  reason?: string;
-  minInvest: number;
-  upsideInPercent: number;
-  upsideInPrice: number;
-  triggerLevel: string;
-  bullishOrBearish: string;
-  reactions: {
-    reaction: string;
-    _id: string;
-  }[];
-  reactionCount: number;
-  exitDate: string;
-  shareCount: number;
-  createdAt: string;
-  premiumTradePrice: number;
-}
 
 const FeedCard = ({ feed }: { feed: IFeed }) => {
   return (
@@ -171,10 +146,8 @@ const FeedCard = ({ feed }: { feed: IFeed }) => {
         {feed.reactions?.length > 0 ? (
           <ReactionWrapper>
             <ReactionList>
-              {feed.reactions.map((reaction) => (
-                <ReactionIcon key={reaction._id}>
-                  {reaction.reaction}
-                </ReactionIcon>
+              {feed.reactions.map((reaction, index) => (
+                <ReactionIcon key={index}>{reaction.reaction}</ReactionIcon>
               ))}
             </ReactionList>
             <ReactionCount>{feed.reactions.length} Likes</ReactionCount>

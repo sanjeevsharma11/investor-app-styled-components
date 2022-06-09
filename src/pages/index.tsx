@@ -1,266 +1,92 @@
+import React, { useCallback, useEffect, useState } from 'react';
 import FeedCard from 'components/Cards/Feed/FeedCard';
-import styled from 'styled-components';
-
-const HomeContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  max-width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  padding: 1rem 2rem;
-`;
-
-const feeds = [
-  {
-    _id: '6299f3b9c1718e28ab14999b',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-1650282415023ec6a31f0-e392-4482-8466-739119bf723e.jpg',
-    name: 'Trendonomics',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'BUY',
-    instrumentName: 'TATASTEEL30JUN221000PE',
-    instrumentReturn: 0,
-    reason: 'resistance',
-    minInvest: 67150,
-    upsideInPercent: 128,
-    upsideInPrice: 2173,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bearish',
-    exitDate: '2022-06-30T09:30:00.000Z',
-    reactions: [
-      {
-        reaction: '❤️',
-        _id: '6299f3b9c1718e28ab14999b',
-      },
-      {
-        reaction: '🔥',
-        _id: '6299f3b9c1718e28ab14919b',
-      },
-    ],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T11:42:49.146Z',
-    premiumTradePrice: 0,
-  },
-  {
-    _id: '6299d45151220eaaf121a026',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-1650520287210e738fde7-1c34-43d0-b413-fdfecb531424.jpg',
-    name: 'Axis',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'PAID',
-    transactionType: 'BUY',
-    instrumentName: 'SUNDARMFIN-EQ',
-    instrumentReturn: 0,
-    minInvest: 1870.05,
-    upsideInPercent: 17,
-    upsideInPrice: 0,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:27:19.087Z',
-    premiumTradePrice: 50,
-  },
-  {
-    _id: '6299d38851220eaaf1219eb6',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-16505160839562ad25896-a9f8-4366-b51f-ed1c7168d324.png',
-    name: 'Anand Rathi',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'BUY',
-    instrumentName: 'TECHM-EQ',
-    instrumentReturn: 0,
-    minInvest: 1150.9,
-    upsideInPercent: 43,
-    upsideInPrice: 0,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:24:48.810Z',
-    premiumTradePrice: 0,
-  },
-  {
-    _id: '6299d34151220eaaf1219b6c',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-165051625617262fa4fe1-9a73-417c-90c0-702de9273ba4.jpg',
-    name: 'Centrum Broking',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'BUY',
-    instrumentName: 'SAIL-EQ',
-    instrumentReturn: -2.3,
-    minInvest: 75.9,
-    upsideInPercent: 74,
-    upsideInPrice: 1,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:23:46.183Z',
-    premiumTradePrice: 0,
-  },
-  {
-    _id: '6299d2fd51220eaaf1219b13',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-165051625617262fa4fe1-9a73-417c-90c0-702de9273ba4.jpg',
-    name: 'Centrum Broking',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'PAID',
-    transactionType: 'BUY',
-    instrumentName: 'VEDL-EQ',
-    instrumentReturn: 5.3,
-    minInvest: 317.75,
-    upsideInPercent: 60,
-    upsideInPrice: 1,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:22:00.628Z',
-    premiumTradePrice: 250,
-  },
-  {
-    _id: '6299d26951220eaaf12199fc',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-165051625617262fa4fe1-9a73-417c-90c0-702de9273ba4.jpg',
-    name: 'Centrum Broking',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'BUY',
-    instrumentName: 'TATASTEEL-EQ',
-    instrumentReturn: 10,
-    minInvest: 1067.9,
-    upsideInPercent: 40,
-    upsideInPrice: 0,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:19:56.100Z',
-    premiumTradePrice: 0,
-  },
-  {
-    _id: '6299d1a651220eaaf12120ae',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-165051625617262fa4fe1-9a73-417c-90c0-702de9273ba4.jpg',
-    name: 'Centrum Broking',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'SELL',
-    instrumentName: 'NMDC-EQ',
-    instrumentReturn: 9.2,
-    minInvest: 127.1,
-    upsideInPercent: 44,
-    upsideInPrice: 0,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:17:07.013Z',
-    premiumTradePrice: 0,
-  },
-  {
-    _id: '6299d17f51220eaaf1212071',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-165051625617262fa4fe1-9a73-417c-90c0-702de9273ba4.jpg',
-    name: 'Centrum Broking',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'BUY',
-    instrumentName: 'HINDALCO-EQ',
-    instrumentReturn: 0,
-    minInvest: 406.8,
-    upsideInPercent: 42,
-    upsideInPrice: 0,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:16:25.319Z',
-    premiumTradePrice: 0,
-  },
-  {
-    _id: '6299d14651220eaaf1212022',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-165051625617262fa4fe1-9a73-417c-90c0-702de9273ba4.jpg',
-    name: 'Centrum Broking',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'BUY',
-    instrumentName: 'COALINDIA-EQ',
-    instrumentReturn: 0,
-    minInvest: 197.3,
-    upsideInPercent: 28,
-    upsideInPrice: 0,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2023-06-02T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:15:18.305Z',
-    premiumTradePrice: 0,
-  },
-  {
-    _id: '6299d10e51220eaaf1211fc5',
-    avatar:
-      'https://prod-iwt-bucket.s3.ap-south-1.amazonaws.com/image-16505200522112defa96e-d87b-4b45-843d-cc79bcb67cc0.jpg',
-    name: 'Kotak',
-    rating: 5,
-    isCertified: false,
-    premiumTradeType: 'FREE',
-    transactionType: 'BUY',
-    instrumentName: 'SBIN-EQ',
-    instrumentReturn: 0,
-    minInvest: 466.7,
-    upsideInPercent: 4,
-    upsideInPrice: 0,
-    triggerLevel: 'market',
-    bullishOrBearish: 'bullish',
-    exitDate: '2022-06-30T09:30:00.000Z',
-    reactions: [],
-    reactionCount: 0,
-    shareCount: 0,
-    createdAt: '2022-06-03T09:14:28.425Z',
-    premiumTradePrice: 0,
-  },
-];
+import useFetchFeeds from 'hooks/useFetchFeeds';
+import {
+  HomeContainer,
+  Error,
+  Box,
+  Info,
+  TermsAndConditions,
+  TermsAndConditionsLink,
+  LoadButton,
+} from './index.elements';
 
 const Home = () => {
+  const [skip, setSkip] = useState(0);
+  const [limit, setlimit] = useState(10);
+
+  const { feeds, loading, error, hasMore } = useFetchFeeds({
+    skip,
+    limit,
+  });
+
+  const handleLoadMore = useCallback(() => {
+    setSkip((prevPage) => prevPage + limit);
+  }, [limit]);
+
+  /**
+   * infinite scroll using ref and observer
+   */
+  const observer = React.useRef<IntersectionObserver>();
+  const lastFeed = React.useRef<HTMLDivElement>(null);
+
+  const handleIntersection = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasMore) {
+          handleLoadMore();
+          if (limit >= 20) {
+            setlimit(10);
+          }
+        }
+      });
+    },
+    [hasMore, handleLoadMore, limit]
+  );
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '1000px',
+      threshold: 1,
+    };
+    observer.current = new IntersectionObserver(handleIntersection, options);
+    lastFeed.current && observer.current.observe(lastFeed.current);
+    return () => {
+      observer.current!.disconnect();
+    };
+  }, [hasMore, handleIntersection]);
+
   return (
     <HomeContainer>
-      {feeds.map((feed, index) => (
+      {feeds.map((feed) => (
         <FeedCard key={feed._id} feed={feed} />
       ))}
+      {error && <Error>Something went wrong. Please try again later.</Error>}
+      {loading && 'Loading...'}
+
+      {hasMore ? (
+        <div ref={lastFeed}>
+          <LoadButton onClick={handleLoadMore}>Load More</LoadButton>
+        </div>
+      ) : (
+        <Box>
+          <Info>No more feeds to load.</Info>
+          <Info>
+            <p>
+              The traders here might not be SEBI registered intermediaries.
+              These ideas are not trade recommendations. They are for the
+              purpose of sharing trade ideas / educational purposes. Please
+              consult SEBI registered intermediaries for investment advice
+            </p>
+            <TermsAndConditions>
+              <TermsAndConditionsLink href='/termsandconditions'>
+                Terms and Conditions
+              </TermsAndConditionsLink>
+            </TermsAndConditions>
+          </Info>
+        </Box>
+      )}
     </HomeContainer>
   );
 };

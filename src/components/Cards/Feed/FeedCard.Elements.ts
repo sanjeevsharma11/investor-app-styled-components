@@ -96,9 +96,11 @@ export const InstrumentReturn = styled.span(
 export const BullishOrBerrish = styled.div`
   font-size: 10px;
   background: ${({ bullish }: { bullish: string }) =>
-    bullish === 'bullish' ? '#e5f0ff' : 'hsla(14, 100%, 93%, 1)'};
+    bullish.toLowerCase() === 'bullish' ? '#e5f0ff' : 'hsla(14, 100%, 93%, 1)'};
   color: ${({ bullish }: { bullish: string }) =>
-    bullish === 'bullish' ? 'hsla(222, 100%, 67%, 1)' : '#FF4848'};
+    bullish.toLowerCase() === 'bullish'
+      ? 'hsla(222, 100%, 67%, 1)'
+      : '#FF4848'};
   font-weight: 400;
   text-transform: capitalize;
   padding: 0.3rem 0.6rem;
