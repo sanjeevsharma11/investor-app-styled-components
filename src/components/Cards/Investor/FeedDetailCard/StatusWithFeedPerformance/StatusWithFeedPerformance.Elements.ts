@@ -5,6 +5,7 @@ export const Row = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff;
 `;
 
 export const StatusWrapper = styled(Row)`
@@ -160,4 +161,14 @@ export const ReactionIcon = styled.div`
   width: 20px;
   margin-right: -1.6rem;
   animation: ${AnimateReaction} 2s ease-in-out infinite;
+`;
+
+export const PostedOnWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  color: hsla(0, 0%, 44%, 1);
+  font-size: 10px;
+  line-height: 12.1px;
 `;
