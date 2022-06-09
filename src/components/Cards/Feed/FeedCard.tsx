@@ -35,10 +35,12 @@ import MinInvestIcon from 'assests/images/feedcard/min_investment.svg';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { IFeed } from 'store/types/feed.types';
+import { useRouter } from 'next/router';
 
 dayjs.extend(relativeTime);
-
 const FeedCard = ({ feed }: { feed: IFeed }) => {
+  const router = useRouter();
+
   return (
     <FeedCardContainer>
       {/* expert info */}
@@ -169,7 +171,9 @@ const FeedCard = ({ feed }: { feed: IFeed }) => {
             <span>Unlock Now</span>
           </UnlockNowButton>
         ) : (
-          <InvestNowButton>Know More</InvestNowButton>
+          <InvestNowButton onClick={() => router.push(`/${feed._id}`)}>
+            Know More
+          </InvestNowButton>
         )}
       </Row>
     </FeedCardContainer>

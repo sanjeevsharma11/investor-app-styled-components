@@ -11,8 +11,9 @@ import {
   Column,
 } from './ReactionAndInvestment.Elements';
 import Image from 'next/image';
+import { numberWithCommas } from 'utils/numberWithCommas';
 
-const ReactionAndInvestment = () => {
+const ReactionAndInvestment = ({ investment }: { investment: number }) => {
   return (
     <Row>
       <Row>
@@ -37,7 +38,7 @@ const ReactionAndInvestment = () => {
             height={'20'}
             style={{ marginBottom: '2px' }}
           />
-          <InvestmentValue>1,000,000</InvestmentValue>
+          <InvestmentValue>{numberWithCommas(investment)}</InvestmentValue>
         </InvesmentWrapper>
       </Column>
     </Row>

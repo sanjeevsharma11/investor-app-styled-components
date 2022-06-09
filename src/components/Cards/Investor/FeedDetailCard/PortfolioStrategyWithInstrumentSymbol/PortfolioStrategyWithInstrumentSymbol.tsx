@@ -1,4 +1,5 @@
 import React from 'react';
+import { IFeedDocument } from 'store/types/feed.types';
 import {
   InstrumentInfoWrapper,
   InstrumentName,
@@ -10,15 +11,19 @@ import {
   Row,
 } from './PortfolioStrategyWithInstrumentSymbol.Elements';
 
-const data = {
-  portfolio: 'My Default Portfolio',
-  strategy: 'My Default Strategy',
-  instrumentSymbol: 'BANKNIFTY09JUN2235100CE',
-  transactionType: 'BUY',
-  instrumentReturn: 0.21,
-};
-
-const PortfolioStrategyWithInstrumentSymbol = () => {
+const PortfolioStrategyWithInstrumentSymbol = ({
+  portfolio,
+  strategy,
+  transactionType,
+  instrumentSymbol,
+  instrumentReturn,
+}: {
+  portfolio: IFeedDocument['portfolio'];
+  strategy: IFeedDocument['strategy'];
+  transactionType: string;
+  instrumentSymbol: string;
+  instrumentReturn: number;
+}) => {
   return (
     <PortfolioStrategyWithInstrumentSymbolWrapper>
       <PortfolioStrategyWithInstrumentSymbolHeader>
@@ -28,18 +33,18 @@ const PortfolioStrategyWithInstrumentSymbol = () => {
       </PortfolioStrategyWithInstrumentSymbolHeader>
       <PortfolioStrategyTitle>
         {`
-            ${data.portfolio} > ${data.strategy}
+           ${portfolio?.name} > ${strategy?.name}
           `}
       </PortfolioStrategyTitle>
 
       <Row>
         <InstrumentInfoWrapper>
-          <InstrumentTransactionType transactionType={data.transactionType}>
-            {data.transactionType === 'BUY' ? 'B' : 'S'}
+          <InstrumentTransactionType transactionType={transactionType}>
+            {transactionType === 'BUY' ? 'B' : 'S'}
           </InstrumentTransactionType>
-          <InstrumentName>{data.instrumentSymbol}</InstrumentName>
-          <InstrumentReturn instrumentReturn={data.instrumentReturn}>
-            {data.instrumentReturn}
+          <InstrumentName>{instrumentSymbol}</InstrumentName>
+          <InstrumentReturn instrumentReturn={instrumentReturn}>
+            {instrumentReturn}
           </InstrumentReturn>
         </InstrumentInfoWrapper>
       </Row>

@@ -136,10 +136,6 @@ export const ExitPrice = styled(UpsideOrReturn)`
   line-height: 19px;
   font-weight: 400;
 
-  &:before {
-    content: '₹';
-    margin-right: -0.5rem;
-  }
   &:after {
     content: '';
   }

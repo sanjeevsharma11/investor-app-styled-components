@@ -283,6 +283,7 @@ export const InvestNowButton = styled.button`
   border-radius: 5px;
   padding: 1rem 1.5rem;
   color: #ffffff;
+  cursor: pointer;
 `;
 
 export const UnlockNowButton = styled.button`
@@ -294,6 +295,7 @@ export const UnlockNowButton = styled.button`
   align-items: center;
   justify-content: center;
   color: #ffffff;
+  cursor: pointer;
 
   span:first-child {
     padding: 1rem 0.5rem;

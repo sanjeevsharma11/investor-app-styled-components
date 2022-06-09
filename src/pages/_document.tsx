@@ -6,6 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
+import Script from 'next/script';
 import { Fragment } from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -46,6 +47,16 @@ export default class MyDocument extends Document {
             href='https://fonts.googleapis.com/css2?family=Inter&display=swap'
             rel='stylesheet'
           />
+          <script
+            src='https://smartapi.angelbroking.com/common/v1.js'
+            defer={true}
+            async={true}
+          ></script>
+          <script
+            src='https://kite.trade/publisher.js?v=3'
+            defer={true}
+            async={true}
+          ></script>
         </Head>
         <body>
           <Main />

@@ -7,27 +7,27 @@ import {
   ScreenShotContainer,
 } from './ReasonWithScreenshot.Elements';
 
-const feed = {
-  bullishOrBearish: 'bearish',
-  reason: 'This is a reason',
-  screenshot: 'https://via.placeholder.com/150',
-};
-
-const ReasonWithScreenshot = () => {
+const ReasonWithScreenshot = ({
+  reason,
+  screenshot,
+  bullishOrBearish,
+}: {
+  reason: string;
+  screenshot: string;
+  bullishOrBearish: string;
+}) => {
   return (
     <>
       <Row>
         <Title>Reasoning</Title>
-        <BullishOrBerrish bullish={feed.bullishOrBearish}>
-          {feed.bullishOrBearish}
+        <BullishOrBerrish bullish={bullishOrBearish}>
+          {bullishOrBearish}
         </BullishOrBerrish>
       </Row>
-      <Value>{feed.reason}</Value>
+      <Value>{reason}</Value>
 
-      <ScreenShotContainer
-        screenshot={feed.screenshot}
-      >
-        <img src={feed.screenshot} alt='screenshot' />
+      <ScreenShotContainer screenshot={screenshot}>
+        <img src={screenshot} alt='screenshot' />
       </ScreenShotContainer>
     </>
   );

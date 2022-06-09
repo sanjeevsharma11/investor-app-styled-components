@@ -17,65 +17,61 @@ import { AiFillEye } from 'react-icons/ai';
 import { BsShare } from 'react-icons/bs';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { IReactions } from 'store/types/reaction.types';
 
 dayjs.extend(relativeTime);
-const data = {
-  status: 'expired',
-  statusType: 'Target Hit',
-  alertHit: 'target-hit',
-  views: 1000,
-  reactions: [
-    {
-      reaction: '❤️',
-      _id: '6299f3b9c1718e28ab14999b',
-    },
-    {
-      reaction: '🔥',
-      _id: '6299f3b9c1718e28ab14919b',
-    },
-    {
-      reaction: '🔥',
-      _id: '6299f3b9c1718e28ab149992',
-    },
-  ],
-  postedOn: new Date(),
-};
 
-const StatusWithFeedPerformance = () => {
+const StatusWithFeedPerformance = ({
+  status,
+  statusType,
+  alertHit,
+  views,
+  reactions,
+  postedOn,
+}: {
+  status: string;
+  statusType: string;
+  alertHit: string;
+  views: number;
+  reactions: IReactions[];
+  postedOn: Date | undefined;
+}) => {
   return (
     <>
       <Row>
         <StatusWrapper>
-          <StatusDot status={data.status} />
-          <TradeStatus>{data.status}</TradeStatus>
-          <TradeStatusType status={data.status} alertHit={data.alertHit}>
-            {data.statusType}
+          <StatusDot status={status} />
+          <TradeStatus>{status}</TradeStatus>
+          <TradeStatusType status={status} alertHit={alertHit}>
+            {statusType}
           </TradeStatusType>
         </StatusWrapper>
 
         <PerformanceWrapper>
           <PerformanceIconAndValueWrapper>
             <AiFillEye />
-            <PerformanceValue>{data.views}</PerformanceValue>
+            <PerformanceValue>{views}</PerformanceValue>
           </PerformanceIconAndValueWrapper>{' '}
           <Dot />
-          <PerformanceIconAndValueWrapper>
-            <ReactionList>
-              {data.reactions.map((reaction) => (
-                <ReactionIcon key={reaction._id}>
-                  {reaction.reaction}
-                </ReactionIcon>
-              ))}
-            </ReactionList>
-            <PerformanceValue>{data.reactions?.length}</PerformanceValue>
-          </PerformanceIconAndValueWrapper>{' '}
-          <Dot />
+          {reactions?.length > 0 && (
+            <>
+              <PerformanceIconAndValueWrapper>
+                <ReactionList>
+                  {reactions?.slice(0, 3)?.map((reaction, index) => (
+                    <ReactionIcon key={index}>{reaction.reaction}</ReactionIcon>
+                  ))}
+                </ReactionList>
+                <PerformanceValue>{reactions?.length}</PerformanceValue>
+              </PerformanceIconAndValueWrapper>{' '}
+              <Dot />
+            </>
+          )}
           <PerformanceIconAndValueWrapper>
             <BsShare />
           </PerformanceIconAndValueWrapper>{' '}
         </PerformanceWrapper>
       </Row>
-      <PostedOnWrapper>{dayjs(data.postedOn).fromNow()}</PostedOnWrapper>
+      <PostedOnWrapper>{dayjs(postedOn).fromNow()}</PostedOnWrapper>
     </>
   );
 };
