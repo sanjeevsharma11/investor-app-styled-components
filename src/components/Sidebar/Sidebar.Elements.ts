@@ -50,3 +50,13 @@ export const NavItemIcon = styled.div`
 export const NavItemText = styled.span`
   font-size: 2rem;
 `;
+
+export const FlexRow = styled.div`
+  cursor: pointer;
+  display: flex;
+  borderradius: 0.6rem;
+  gap: 1rem;
+  color: #023047;
+  width: 20rem;
+  font-size: 2rem;
+`;

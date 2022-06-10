@@ -3,8 +3,9 @@ import Link from 'next/link';
 
 export const HomeContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 2rem;
   max-width: 100%;
   min-height: 100vh;

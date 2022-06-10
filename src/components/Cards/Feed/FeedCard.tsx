@@ -198,7 +198,7 @@ const FeedCard = ({
         {feed.reactions?.length > 0 ? (
           <ReactionWrapper>
             <ReactionList>
-              {feed.reactions.map((reaction, index) => (
+              {feed.reactions?.slice(0, 3)?.map((reaction, index) => (
                 <ReactionIcon key={index}>{reaction.reaction}</ReactionIcon>
               ))}
             </ReactionList>
