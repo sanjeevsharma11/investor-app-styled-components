@@ -59,13 +59,15 @@ const Home = () => {
     };
   }, [hasMore, handleIntersection]);
 
-  const [open, setOpen] = useState(true);
+  const [showSignUpDrawer, setShowSignUpDrawer] = useState(false);
+  const [showPaymentModel, setShowPaymentModel] = useState(false);
+  const [refId, setRefId] = useState('');
 
   return (
     <HomeContainer>
       <Drawer
-        open={open}
-        onClose={setOpen}
+        open={showSignUpDrawer}
+        onClose={setShowSignUpDrawer}
         style={`
            padding: 3rem 1rem;
           bottom: 0;
@@ -83,7 +85,14 @@ const Home = () => {
       </Drawer>
 
       {feeds.map((feed) => (
-        <FeedCard key={feed._id} feed={feed} />
+        <FeedCard
+          key={feed._id}
+          feed={feed}
+          setShowSignUpDrawer={setShowSignUpDrawer}
+          setShowPaymentModel={setShowPaymentModel}
+          refId={refId}
+          setRefId={setRefId}
+        />
       ))}
       {error && <Error>Something went wrong. Please try again later.</Error>}
       {loading && 'Loading...'}

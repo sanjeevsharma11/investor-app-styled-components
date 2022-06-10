@@ -9,6 +9,12 @@ export const AuthCardContainer = styled.section`
   flex-direction: column;
 `;
 
+export const Logo = styled.img`
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 1rem;
+`;
+
 export const RelativeContainer = styled(AuthCardContainer)`
   position: relative;
 `;
@@ -17,7 +23,6 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   gap: 1rem;
   width: 100%;
   padding: 1rem;

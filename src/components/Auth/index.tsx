@@ -5,13 +5,16 @@ import Truecaller from './Truecaller/Truecaller';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { facebookLogin, googleLogin } from 'store/services/user.service';
+import DrawerTribeLogo from 'assests/images/logo/tribe_logo.svg';
 import Link from 'next/link';
 import {
   AuthCardContainer,
   Overlay,
   RelativeContainer,
   Row,
+  Logo,
 } from './AuthCard.Elements';
+import Image from 'next/image';
 
 const AuthCard = () => {
   const dispatch = useAppDispatch();
@@ -41,6 +44,7 @@ const AuthCard = () => {
 
   return (
     <AuthCardContainer>
+      <Logo src={DrawerTribeLogo.src} alt='tribe_logo' />
       <RelativeContainer>
         {!checked && (
           <Overlay

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AiFillStar, AiFillLike } from 'react-icons/ai';
 import { MdDoubleArrow } from 'react-icons/md';
 import { BiRupee } from 'react-icons/bi';
@@ -36,10 +36,59 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { IFeed } from 'store/types/feed.types';
 import { useRouter } from 'next/router';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { resetPaymentState } from 'store/slices/payment.slice';
 
 dayjs.extend(relativeTime);
-const FeedCard = ({ feed }: { feed: IFeed }) => {
+const FeedCard = ({
+  feed,
+  setShowSignUpDrawer,
+  setShowPaymentModel,
+  refId,
+  setRefId,
+}: {
+  feed: IFeed;
+  setShowSignUpDrawer: (showSignUpDrawer: boolean) => void;
+  setShowPaymentModel: (showPaymentModel: boolean) => void;
+  refId: string;
+  setRefId: (refId: string) => void;
+}) => {
   const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const token = useAppSelector((state) => state.user.token);
+  const payment = useAppSelector((state) => state.payment);
+  const {
+    payment: { status: isPaid },
+  } = payment;
+
+  const handlePremiumTrade = (refId: string) => {
+    setRefId(refId);
+    if (!token) {
+      setShowSignUpDrawer(true);
+      return;
+    } else if (isPaid) {
+      router.push(`/${refId}`);
+      return;
+    } else {
+      setShowPaymentModel(true);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      setShowSignUpDrawer(false);
+    }
+  }, [token, setShowSignUpDrawer]);
+
+  useEffect(() => {
+    if (isPaid) {
+      dispatch(resetPaymentState());
+      setShowPaymentModel(false);
+      router.push(`/${refId}`);
+    }
+  }, [isPaid, dispatch, refId, setShowPaymentModel, router]);
 
   return (
     <FeedCardContainer>
@@ -164,7 +213,7 @@ const FeedCard = ({ feed }: { feed: IFeed }) => {
       <Row>
         <AiFillLike />
         {feed.premiumTradeType === 'PAID' ? (
-          <UnlockNowButton>
+          <UnlockNowButton onClick={() => handlePremiumTrade(feed._id)}>
             <span>
               <BiRupee /> {feed.premiumTradePrice}
             </span>
