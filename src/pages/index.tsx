@@ -12,6 +12,8 @@ import {
 } from './index.elements';
 import Drawer from 'components/Drawer/Drawer';
 import AuthCard from 'components/Auth';
+import Modal from 'components/Modal/Modal';
+import Payment from 'components/Payment/Payment';
 
 const Home = () => {
   const [skip, setSkip] = useState(0);
@@ -60,29 +62,23 @@ const Home = () => {
   }, [hasMore, handleIntersection]);
 
   const [showSignUpDrawer, setShowSignUpDrawer] = useState(false);
-  const [showPaymentModel, setShowPaymentModel] = useState(false);
+  const [showPaymentModel, setShowPaymentModel] = useState(true);
   const [refId, setRefId] = useState('');
 
   return (
     <HomeContainer>
-      <Drawer
-        open={showSignUpDrawer}
-        onClose={setShowSignUpDrawer}
-        style={`
-           padding: 3rem 1rem;
-          bottom: 0;
-          height: auto;
-          background: white;
-          z-index: 10;
-          width: 100%;
-
-          @media screen and (min-width:920px) {
-          width: 80%;
-          }
-        `}
-      >
+      <Drawer open={showSignUpDrawer} onClose={setShowSignUpDrawer}>
         <AuthCard />
       </Drawer>
+
+      {showPaymentModel && (
+        <Modal
+          open={showPaymentModel}
+          onClose={() => setShowPaymentModel(false)}
+        >
+          <Payment refType={'Tip'} refId={refId} />
+        </Modal>
+      )}
 
       {feeds.map((feed) => (
         <FeedCard

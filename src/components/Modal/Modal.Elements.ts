@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: fixed;
   display: ${({ open }: { open: boolean }) => (open ? 'block' : 'none')};
-  padding: 3rem 1rem;
-  bottom: 0;
-  height: auto;
+  position: fixed;
+  top: 5%;
+  left: 0;
+  padding: 3rem 2rem;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
   background: white;
   z-index: 10;
-  width: 100%;
+  border-radius: 0.5rem;
+  border: 2px solid #e6e6e6;
 
   @media screen and (min-width: 920px) {
     width: 80%;
+    left: 10%;
   }
 `;
+
 export const RelativeContainer = styled.div`
   position: relative;
   height: 100%;

@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { wrapper } from '../store/index';
 import Toaster from 'components/Toaster/Toaster';
 
+
 const pathNames = ['/[id]', '/termsandconditions'];
 
 function MyApp({ Component, pageProps, router }: AppProps) {

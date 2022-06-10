@@ -134,12 +134,6 @@ export const ExpertDetailColumn = styled.div`
       }
     }
   }
-  &:nth-child(3) {
-    p {
-      &:before {
-    content: '₹';
-    margin-right: 0.2rem;
-  }
 }  
 `;
 

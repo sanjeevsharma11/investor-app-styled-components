@@ -20,16 +20,6 @@ import { IoIosArrowDropleftCircle } from 'react-icons/io';
 import dayjs from 'dayjs';
 import { IFeedUser } from 'store/types/feed.types';
 
-const expertStats = {
-  avatar: 'https://i.pravatar.cc/300',
-  name: 'Sanjeev Sharma',
-  memberSince: new Date().getFullYear() - 1,
-  accuracy: 92,
-  expertReturn: -25,
-  tradeNumber: 23,
-  profit: 17939,
-};
-
 const FeedCardExpertStats = ({
   user: {
     _id,
@@ -88,7 +78,9 @@ const FeedCardExpertStats = ({
 
         <ExpertDetailColumn>
           <ExpertDetailsHeading>Profit</ExpertDetailsHeading>
-          <ExpertDetailsValue gain={profit}>{profit}</ExpertDetailsValue>
+          <ExpertDetailsValue gain={profit}>
+            {isNaN(profit) ? '-' : `₹${profit}`}
+          </ExpertDetailsValue>
         </ExpertDetailColumn>
       </ExpertDetailContainer>
     </ExpertCard>

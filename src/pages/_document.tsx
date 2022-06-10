@@ -51,12 +51,17 @@ export default class MyDocument extends Document {
             src='https://smartapi.angelbroking.com/common/v1.js'
             defer={true}
             async={true}
-          ></script>
+          />
           <script
             src='https://kite.trade/publisher.js?v=3'
             defer={true}
             async={true}
-          ></script>
+          />
+          <script
+            src={process.env.NEXT_APP_CASHFREE_PAYMENT_URL}
+            defer={true}
+            async={true}
+          />
         </Head>
         <body>
           <Main />

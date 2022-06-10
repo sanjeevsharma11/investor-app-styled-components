@@ -1,7 +1,7 @@
 import React from 'react';
-import { CloseIcon, Container, RelativeContainer } from './Drawer.Elements';
+import { CloseIcon, Container, RelativeContainer } from './Modal.Elements';
 
-const Drawer = ({
+const Modal = ({
   open,
   onClose,
   children,
@@ -21,4 +21,4 @@ const Drawer = ({
   );
 };
 
-export default Drawer;
+export default Modal;
