@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.18.2",
+    "@charkour/react-reactions": "^0.8.0",
     "axios": "^0.27.2",
     "cashfree-dropjs": "^1.1.4",
     "cookies-next": "^2.0.4",

@@ -62,7 +62,7 @@ const Home = () => {
   }, [hasMore, handleIntersection]);
 
   const [showSignUpDrawer, setShowSignUpDrawer] = useState(false);
-  const [showPaymentModel, setShowPaymentModel] = useState(true);
+  const [showPaymentModel, setShowPaymentModel] = useState(false);
   const [refId, setRefId] = useState('');
 
   return (

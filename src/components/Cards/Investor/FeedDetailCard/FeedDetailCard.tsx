@@ -125,7 +125,9 @@ const FeedDetailCard = ({
         screenshot={feed?.chartLink as string}
       />
       <ChooseYourBrokerNoSSR />
-      <ReactionAndInvestment investment={minInvestment} />
+      <ReactionAndInvestment investment={minInvestment} 
+      refId={feed?._id}
+      />
     </FeedDetailCardWrapper>
   );
 };

@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.18.2
+  '@charkour/react-reactions': ^0.8.0
   '@reduxjs/toolkit': ^1.8.2
   '@types/node': 17.0.41
   '@types/numeral': ^2.0.2
@@ -36,6 +37,7 @@ specifiers:
 
 dependencies:
   '@babel/core': 7.18.2
+  '@charkour/react-reactions': 0.8.0_react@18.1.0
   axios: 0.27.2
   cashfree-dropjs: 1.1.4
   cookies-next: 2.0.4
@@ -316,6 +318,15 @@ packages:
     dependencies:
       '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
+
+  /@charkour/react-reactions/0.8.0_react@18.1.0:
+    resolution: {integrity: sha512-N4ZLDT//wPd0y6sCWWSNsj0M2PyPxG0UlLVw7FZCchriIOQSugo4R/A8effE4LL1qJR5dhBufyk8qkoR29jjkg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.1.0
+    dev: false
 
   /@emotion/babel-plugin/11.9.2_@babel+core@7.18.2:
     resolution: {integrity: sha512-Pr/7HGH6H6yKgnVFNEj2MVlreu3ADqftqjqwUvDy/OJzKFgxKeTQ+eeUf20FOTuHVkDON2iNa25rAXVYtWJCjw==}

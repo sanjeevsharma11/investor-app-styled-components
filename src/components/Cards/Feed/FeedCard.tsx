@@ -38,6 +38,7 @@ import { IFeed } from 'store/types/feed.types';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { resetPaymentState } from 'store/slices/payment.slice';
+import Reaction from 'components/Reaction/Reaction';
 
 dayjs.extend(relativeTime);
 const FeedCard = ({
@@ -211,7 +212,8 @@ const FeedCard = ({
 
       {/* footer - action btn */}
       <Row>
-        <AiFillLike />
+        <Reaction refId={feed._id} refType='Tip' />
+
         {feed.premiumTradeType === 'PAID' ? (
           <UnlockNowButton onClick={() => handlePremiumTrade(feed._id)}>
             <span>

@@ -12,20 +12,19 @@ import {
 } from './ReactionAndInvestment.Elements';
 import Image from 'next/image';
 import { numberWithCommas } from 'utils/numberWithCommas';
+import Reaction from 'components/Reaction/Reaction';
 
-const ReactionAndInvestment = ({ investment }: { investment: number }) => {
+const ReactionAndInvestment = ({
+  investment,
+  refId,
+}: {
+  investment: number;
+  refId: string;
+}) => {
   return (
     <Row>
       <Row>
-        <ReactionWrapper>
-          <Image
-            src={ReactionIcon}
-            alt='Reaction Icon'
-            width='20'
-            height='20'
-          />{' '}
-          <ReactionText>Like</ReactionText>
-        </ReactionWrapper>
+        <Reaction refId={refId} refType='Tip' />
       </Row>
 
       <Column>
