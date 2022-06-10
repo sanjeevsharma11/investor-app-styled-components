@@ -10,6 +10,8 @@ import {
   TermsAndConditionsLink,
   LoadButton,
 } from './index.elements';
+import Drawer from 'components/Drawer/Drawer';
+import AuthCard from 'components/Auth';
 
 const Home = () => {
   const [skip, setSkip] = useState(0);
@@ -57,8 +59,29 @@ const Home = () => {
     };
   }, [hasMore, handleIntersection]);
 
+  const [open, setOpen] = useState(true);
+
   return (
     <HomeContainer>
+      <Drawer
+        open={open}
+        onClose={setOpen}
+        style={`
+           padding: 3rem 1rem;
+          bottom: 0;
+          height: auto;
+          background: white;
+          z-index: 10;
+          width: 100%;
+
+          @media screen and (min-width:920px) {
+          width: 80%;
+          }
+        `}
+      >
+        <AuthCard />
+      </Drawer>
+
       {feeds.map((feed) => (
         <FeedCard key={feed._id} feed={feed} />
       ))}
